@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Il Fiore delle Ville - Casale Storico in Toscana</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --terra: #8B6F47;
+            --terra-chiaro: #B89968;
+            --pietra: #4A4A4A;
+            --crema: #F5F1E8;
+            --verde: #5C6F4E;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.7;
+            color: var(--pietra);
+            background: var(--crema);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            justify-content: center;
+            padding: 1.2rem 0;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            color: var(--pietra);
+            text-decoration: none;
+            padding: 0.5rem 1.5rem;
+            transition: color 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav a:hover {
+            color: var(--terra);
+        }
+
+        /* Hero Section */
+        #home {
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), 
+                        url('https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=1920') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content h1 {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            margin-bottom: 1rem;
+            font-weight: 400;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .hero-content p {
+            font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+            font-style: italic;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+
+        /* Sections */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 5rem 2rem;
+        }
+
+        h2 {
+            font-size: 2.8rem;
+            color: var(--terra);
+            margin-bottom: 3rem;
+            text-align: center;
+            font-weight: 400;
+        }
+
+        h3 {
+            font-size: 1.8rem;
+            color: var(--terra-chiaro);
+            margin: 2rem 0 1rem;
+        }
+
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+        }
+
+        .highlight-box {
+            background: white;
+            padding: 2rem;
+            border-left: 4px solid var(--terra);
+            margin: 2rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* Gallery */
+        .gallery-category {
+            margin-bottom: 4rem;
+        }
+
+        .gallery-category h3 {
+            text-align: center;
+            color: var(--terra);
+            font-size: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 3rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+            aspect-ratio: 4/3;
+            background: #e0e0e0;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* Contact */
+        .contact-info {
+            text-align: center;
+            background: white;
+            padding: 3rem;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-info a {
+            color: var(--terra);
+            text-decoration: none;
+            font-size: 1.3rem;
+            font-weight: 500;
+            display: block;
+            margin-top: 1rem;
+        }
+
+        .contact-info a:hover {
+            color: var(--terra-chiaro);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+                gap: 0.5rem;
+            }
+
+            section {
+                padding: 3rem 1.5rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Smooth scroll */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        section:target {
+            scroll-margin-top: 80px;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#storia">Storia</a></li>
+            <li><a href="#proprieta">La Proprietà</a></li>
+            <li><a href="#territorio">Il Territorio</a></li>
+            <li><a href="#galleria">Galleria</a></li>
+            <li><a href="#contatti">Contatti</a></li>
+        </ul>
+    </nav>
+
+    <section id="home">
+        <div class="hero-content">
+            <h1>Il Fiore delle Ville</h1>
+            <p>Casale Storico in Toscana</p>
+        </div>
+    </section>
+
+    <section id="storia">
+        <h2>La Storia</h2>
+        
+        <div class="content">
+            <p>Il casale gode di una storia molto antica. Il punto di osservazione su cui sorge l'edificio risale con ogni probabilità ad epoca medievale e addirittura pre-medievale, sia perché la costruzione "a secco" del muro di pietra richiama epoche più antiche sia perché la struttura complessiva appare troppo grande per essere stata creata in periodi successivi.</p>
+
+            <p>In epoca medicea la proprietà passò ai Medici. Nel corso dei secoli che vanno fino al 1960 è appartenuta a due sole famiglie: i Papi (fino all'Ottocento) e la famiglia senese Ciacci.</p>
+
+            <div class="highlight-box">
+                <p><strong>Un luogo di osservazione storico:</strong> La collocazione in una posizione così dominante, con vista sulla valle del Mugello fino alla piana fiorentina, suggerisce che il luogo fosse utilizzato come punto di avvistamento e controllo del territorio circostante.</p>
+            </div>
+
+            <p>Il fabbricato è stato completamente ristrutturato tra il 1995 e il 2005, con un attento lavoro di conservazione che ha preservato le caratteristiche architettoniche originali, riportando alla luce l'antico misto di pietra e mattoni a faccia vista.</p>
+        </div>
+    </section>
+
+    <section id="proprieta">
+        <h2>La Proprietà</h2>
+        
+        <div class="content">
+            <p><strong>Il Fiore delle Ville</strong> è una proprietà unica che si estende su <strong>4,8 ettari</strong> di terreno coltivato prevalentemente a uliveto, con circa <strong>400 piante d'ulivo</strong> in produzione.</p>
+
+            <p>Situato a <strong>800 metri s.l.m.</strong> nel comune di Borgo San Lorenzo, località Le Ville, il casale gode di una posizione eccezionale: perfettamente esposto a sud e ben riparato a nord, beneficia di un microclima particolarmente favorevole.</p>
+
+            <h3 style="color: var(--terra); margin: 2rem 0 1rem;">L'edificio principale</h3>
+            <p>L'intero fabbricato è stato oggetto di un intervento di ristrutturazione conservativa: l'edificio è stato integralmente consolidato – tetto, soffitti e solai – e le facciate sono state restaurate e riportano ora l'antico misto di pietra e mattoni a faccia vista.</p>
+
+            <p><strong>Primo piano:</strong> sala di accoglienza con camino, 2 camere da letto, 2 bagni e una cucina piuttosto grande.</p>
+
+            <p><strong>Piano superiore:</strong> un salone su cui affacciano due camere e un'altra sala cui corrisponde un'altra camera molto spaziosa con bagno. Su questo piano ci sono altri due bagni e un'altra camera.</p>
+
+            <p><strong>Piano terreno:</strong> ampia taverna lunga quasi 20 metri e larga circa 6 metri, più due altri locali annessi con un piccolo bagno. Molto indicata anche per ricevimenti o eventi.</p>
+
+            <div class="highlight-box" style="margin-top: 3rem;">
+                <h3 style="color: var(--terra); margin-bottom: 1rem;">L'annesso: il gioiello da scoprire</h3>
+                <p>Di fronte all'edificio principale si trova una graziosa costruzione in pietra di circa 150 mq, attualmente usata come rimessa agricola ma con <strong>enorme potenziale di restauro</strong>. Ottima posizione e molto gradevole alla vista, questa struttura offre la possibilità di creare uno spazio unico di circa 200 mq.</p>
+                <p style="margin-top: 1rem;">Appoggiato ad essa c'è un antico e grande forno a legna (quasi 2 mt di diametro), realizzato in pietra secondo i criteri dei secoli passati.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="territorio">
+        <h2>Il Territorio</h2>
+        
+        <div class="content">
+            <p><strong>La posizione è unica.</strong> A circa 800 metri s.l.m., perfettamente esposta a sud e molto ben riparata a nord, tutta la proprietà gode di un vantaggio microclimatico netto.</p>
+
+            <p>Nelle giornate di sole, il primo mattino regala un'impressione paradisiaca, con il territorio circostante ancora avvolto dalla nebbia mattutina e una vista nitida fatta di sfondi che gradano alla distanza fino a Firenze.</p>
+
+            <p>Altro tratto estatico è la luce del tramonto che penetra il casale da una parte all'altra, creando un ambiente pittoresco con rari giochi di luci e colori.</p>
+
+            <div class="highlight-box">
+                <h3 style="color: var(--terra); margin-bottom: 1rem;">Attività e dintorni</h3>
+                <p>Numerosi sono i sentieri che lambiscono la proprietà e che transitano nelle vicinanze. Oltre alla possibilità di svolgere attività di trekking, cicloturismo e birdwatching, si segnala la presenza di maneggi nelle vicinanze per la pratica dell'equitazione.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="galleria">
+        <h2>Galleria</h2>
+        
+        <!-- Panoramica -->
+        <div class="gallery-category">
+            <h3>Panoramica</h3>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/panoramica/01.jpg" alt="Vista dalla proprietà al tramonto">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/panoramica/02.jpg" alt="Alba sopra le nuvole">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/panoramica/03.jpg" alt="Vista panoramica della vallata">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/panoramica/04.jpg" alt="Vista dal terrazzo con panorama">
+                </div>
+            </div>
+        </div>
+
+        <!-- Casale -->
+        <div class="gallery-category">
+            <h3>Casale</h3>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/casale/01.jpg" alt="Il casale immerso nell'uliveto">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/casale/02.jpg" alt="Ingresso della proprietà">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/casale/03.jpg" alt="Facciata principale">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/casale/04.jpg" alt="Dettaglio ingresso in pietra">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/casale/05.jpg" alt="Balcone con finestre antiche">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/casale/06.jpg" alt="Dettaglio architettonico">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/casale/07.jpg" alt="Scala esterna in pietra">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/casale/08.jpg" alt="Cortile interno">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/casale/09.jpg" alt="Lato della proprietà">
+                </div>
+            </div>
+        </div>
+
+        <!-- Interni -->
+        <div class="gallery-category">
+            <h3>Interni</h3>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/interni/01.jpg" alt="Taverna con archi a mattoni">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/interni/02.jpg" alt="Cucina con volte originali">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/interni/03.jpg" alt="Cucina abitabile">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/interni/04.jpg" alt="Sala da pranzo">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/interni/05.jpg" alt="Taverna con archi">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/interni/06.jpg" alt="Corridoio con volte a mattoni">
+                </div>
+            </div>
+        </div>
+
+        <!-- Uliveta -->
+        <div class="gallery-category">
+            <h3>Uliveta</h3>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/uliveta/01.jpg" alt="Sentiero tra gli ulivi">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/uliveta/02.jpg" alt="Uliveto con vista">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/uliveta/03.jpg" alt="Vista dalla proprietà">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/uliveta/04.jpg" alt="Piante d'ulivo secolari">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/uliveta/05.jpg" alt="Terreno con ulivi">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/uliveta/06.jpg" alt="Vista vallata con panorama">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/uliveta/07.jpg" alt="Uliveto terrazzato">
+                </div>
+            </div>
+        </div>
+
+        <!-- Annesso -->
+        <div class="gallery-category">
+            <h3>Annesso</h3>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/annesso/01.jpg" alt="Annesso in pietra da recuperare">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/annesso/02.jpg" alt="Vista dell'annesso">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/annesso/03.jpg" alt="Costruzione originale in pietra">
+                </div>
+            </div>
+        </div>
+
+        <!-- Eventi -->
+        <div class="gallery-category">
+            <h3>Eventi</h3>
+            <div class="gallery">
+                <div class="gallery-item">
+                    <img src="images/eventi/01.jpg" alt="Taverna allestita per eventi">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/eventi/02.jpg" alt="Ricevimento in taverna">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/eventi/03.jpg" alt="Buffet sotto le volte">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/eventi/04.jpg" alt="Spazio eventi con tramonto">
+                </div>
+                <div class="gallery-item">
+                    <img src="images/eventi/05.jpg" alt="Vista panoramica durante evento">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contatti">
+        <h2>Contatti</h2>
+        
+        <div class="contact-info">
+            <p style="font-size: 1.2rem; margin-bottom: 2rem;">Per informazioni e visite alla proprietà:</p>
+            <a href="/cdn-cgi/l/email-protection#f7919e988592d991859e8d8d9eb7909a969e9bd994989a"><span class="__cf_email__" d
